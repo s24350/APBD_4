@@ -7,7 +7,7 @@ using Zadanie5.Services;
 namespace APBD_Zadanie_6.Controllers
 {
 
-    [Route("api/[warehouse2]")]
+    [Route("api/warehouse2")]
     [ApiController]
     public class WarehouseProcedureController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace APBD_Zadanie_6.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProductToWarehouse(ProductWarehouse productWarehouse) {
             int idProductWarehouse = await _warehouseProcedureService.AddProductToWarehouse(productWarehouse);
-            return Ok();
+            return Ok(idProductWarehouse);
         }
 
     }

@@ -19,7 +19,7 @@ namespace Zadanie5.Controllers
         public async Task<IActionResult> AddProduct(ProductWarehouse product)
         {
             int idProductWarehouse = await _warehouseService.AddProduct(product); //try catch
-            return Ok();
+            return Ok(idProductWarehouse);
         }
     }
 }
