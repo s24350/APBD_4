@@ -89,11 +89,12 @@ namespace Zadanie5.Services
                 cmd.Parameters.Clear();
 
                 cmd.CommandText = "INSERT INTO Product_Warehouse(IdWarehouse, IdProduct, IdOrder, Amount, Price, CreatedAt) " +
-                    $"VALUES(@IdWarehouse, @IdProduct, @IdOrder, @Amount, @Amount*{price}, @CreatedAt)";//wykorzytanie wcześniej zdefiniowanej zmiennej price
+                    "VALUES(@IdWarehouse, @IdProduct, @IdOrder, @Amount, @Amount*@Price, @CreatedAt)";//wykorzytanie wcześniej zdefiniowanej zmiennej price
                 cmd.Parameters.AddWithValue("IdWarehouse", productWarehouse.IdWarehouse);
                 cmd.Parameters.AddWithValue("IdProduct", productWarehouse.IdProduct); 
                 cmd.Parameters.AddWithValue("IdOrder", idOrder);//wykorzytanie wcześniej zdefiniowanej zmiennej idOrder
                 cmd.Parameters.AddWithValue("Amount", productWarehouse.Amount);
+                cmd.Parameters.AddWithValue("Price", price);
                 cmd.Parameters.AddWithValue("CreatedAt", productWarehouse.CreatedAt);
 
                 int rowsInserted = await cmd.ExecuteNonQueryAsync();

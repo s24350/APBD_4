@@ -22,6 +22,8 @@ namespace APBD_Zadanie_6.Services
             using var connection = new SqlConnection(connectionString);
             using var cmd = new SqlCommand("AddProductToWarehouse", connection);
 
+            await connection.OpenAsync();
+
             var transaction = (SqlTransaction) await connection.BeginTransactionAsync();
             cmd.Transaction = transaction;
 
@@ -35,7 +37,7 @@ namespace APBD_Zadanie_6.Services
                 cmd.Parameters.AddWithValue("Amount", productWarehouse.Amount);
                 cmd.Parameters.AddWithValue("CreatedAt", productWarehouse.CreatedAt);
 
-                await connection.OpenAsync();
+
                 int rowsChanged = await cmd.ExecuteNonQueryAsync();
 
                 if (rowsChanged < 1) throw new Exception();
